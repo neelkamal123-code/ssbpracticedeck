@@ -200,8 +200,13 @@ export const firebaseAuthService: AuthService = {
       selectedProvider.addScope("name");
     }
 
-    const credential = await signInWithPopup(auth, selectedProvider);
-    return mapFirebaseUser(credential.user);
+    try {
+      const credential = await signInWithPopup(auth, selectedProvider);
+      return mapFirebaseUser(credential.user);
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+      throw error;
+    }
   },
 
   async signInWithEmail(credentials: EmailCredentials) {
