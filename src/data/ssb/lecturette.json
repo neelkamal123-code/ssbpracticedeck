@@ -1,0 +1,158 @@
+[
+  {
+    "id": "lec_001",
+    "title": "Leadership",
+    "icon": "crown",
+    "category": "LECTURETTE",
+    "facts": [
+      "Leadership is influence through character and consistency.",
+      "Clear communication improves team execution.",
+      "Decision ownership builds trust.",
+      "Feedback loops make teams adaptive."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Leadership"
+  },
+  {
+    "id": "lec_002",
+    "title": "Time Management",
+    "icon": "clock-3",
+    "category": "LECTURETTE",
+    "facts": [
+      "Prioritization by impact reduces chaos.",
+      "Time-blocking improves deep focus.",
+      "Daily reviews increase consistency.",
+      "Recovery breaks sustain performance quality."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Time_management"
+  },
+  {
+    "id": "lec_003",
+    "title": "Cybersecurity Basics",
+    "icon": "shield",
+    "category": "LECTURETTE",
+    "facts": [
+      "Strong unique passwords reduce breach probability.",
+      "Two-factor authentication blocks many attacks.",
+      "Phishing remains a major threat vector.",
+      "Frequent updates patch known vulnerabilities."
+    ],
+    "externalLink": "https://www.cisa.gov/secure-our-world"
+  },
+  {
+    "id": "lec_004",
+    "title": "Climate Awareness",
+    "icon": "thermometer",
+    "category": "LECTURETTE",
+    "facts": [
+      "Climate change increases weather volatility.",
+      "Adaptation planning protects vulnerable communities.",
+      "Clean energy transition reduces emissions.",
+      "Local behavior change has cumulative impact."
+    ],
+    "externalLink": "https://www.ipcc.ch/"
+  },
+  {
+    "id": "lec_005",
+    "title": "Artificial Intelligence",
+    "icon": "bot",
+    "category": "LECTURETTE",
+    "facts": [
+      "AI models identify patterns in large datasets.",
+      "AI improves productivity across sectors.",
+      "Bias risk must be managed through governance.",
+      "Human oversight remains essential."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+  },
+  {
+    "id": "lec_006",
+    "title": "Mental Resilience",
+    "icon": "brain",
+    "category": "LECTURETTE",
+    "facts": [
+      "Resilience is the ability to recover from setbacks.",
+      "Routine and purpose stabilize focus.",
+      "Breath control reduces stress load.",
+      "Support networks protect mental health."
+    ],
+    "externalLink": "https://www.apa.org/topics/resilience"
+  },
+  {
+    "id": "lec_007",
+    "title": "Reading Culture",
+    "icon": "book-open",
+    "category": "LECTURETTE",
+    "facts": [
+      "Daily reading expands structured thinking.",
+      "Non-fiction boosts contextual awareness.",
+      "Reflective notes improve retention.",
+      "Shared reading circles build perspective."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Reading"
+  },
+  {
+    "id": "lec_008",
+    "title": "Water Conservation",
+    "icon": "droplets",
+    "category": "LECTURETTE",
+    "facts": [
+      "Freshwater is limited and unevenly distributed.",
+      "Leak management saves significant volumes.",
+      "Rainwater harvesting supports local resilience.",
+      "Daily habits drive conservation outcomes."
+    ],
+    "externalLink": "https://www.unwater.org/water-facts/water-scarcity"
+  },
+  {
+    "id": "lec_009",
+    "title": "Renewable Energy",
+    "icon": "sun",
+    "category": "LECTURETTE",
+    "facts": [
+      "Solar and wind are key low-carbon options.",
+      "Storage improves renewable reliability.",
+      "Grid modernization is crucial for scale.",
+      "Transition reduces fuel dependency."
+    ],
+    "externalLink": "https://www.iea.org/topics/renewables"
+  },
+  {
+    "id": "lec_010",
+    "title": "Sleep and Performance",
+    "icon": "moon",
+    "category": "LECTURETTE",
+    "facts": [
+      "Sleep quality affects judgment and memory.",
+      "Consistent timing improves recovery cycles.",
+      "Sleep debt reduces decision speed.",
+      "Night routines influence next-day focus."
+    ],
+    "externalLink": "https://www.cdc.gov/sleep/"
+  },
+  {
+    "id": "lec_011",
+    "title": "Civic Responsibility",
+    "icon": "globe",
+    "category": "LECTURETTE",
+    "facts": [
+      "Responsible citizenship strengthens institutions.",
+      "Community participation improves public outcomes.",
+      "Lawful conduct sustains social trust.",
+      "Constructive engagement drives long-term change."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Citizenship"
+  },
+  {
+    "id": "lec_012",
+    "title": "Public Speaking",
+    "icon": "mic",
+    "category": "LECTURETTE",
+    "facts": [
+      "Clear structure improves audience understanding.",
+      "Practice reduces speaking anxiety.",
+      "Pace and pause improve message impact.",
+      "Audience empathy sharpens relevance."
+    ],
+    "externalLink": "https://en.wikipedia.org/wiki/Public_speaking"
+  }
+]

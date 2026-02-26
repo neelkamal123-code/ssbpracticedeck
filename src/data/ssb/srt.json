@@ -1,0 +1,146 @@
+[
+  {
+    "id": "srt_001",
+    "title": "You witness a minor road accident while heading to an exam center.",
+    "icon": "car",
+    "category": "SRT",
+    "suggestions": [
+      "Secure immediate safety",
+      "Call emergency support",
+      "Inform local authorities",
+      "Proceed with composure"
+    ]
+  },
+  {
+    "id": "srt_002",
+    "title": "Your train is canceled on the day of a crucial interview.",
+    "icon": "train",
+    "category": "SRT",
+    "suggestions": [
+      "Find alternate route quickly",
+      "Inform stakeholders early",
+      "Preserve time buffer",
+      "Stay solution-focused"
+    ]
+  },
+  {
+    "id": "srt_003",
+    "title": "A teammate is absent just before a group presentation.",
+    "icon": "users",
+    "category": "SRT",
+    "suggestions": [
+      "Redistribute key tasks",
+      "Clarify speaking flow",
+      "Support team morale",
+      "Deliver with confidence"
+    ]
+  },
+  {
+    "id": "srt_004",
+    "title": "You find a wallet with cash and identity cards in a public area.",
+    "icon": "wallet",
+    "category": "SRT",
+    "suggestions": [
+      "Verify owner identity",
+      "Report through proper desk",
+      "Return transparently",
+      "Document handover"
+    ]
+  },
+  {
+    "id": "srt_005",
+    "title": "A fire alarm goes off in your hostel late at night.",
+    "icon": "flame",
+    "category": "SRT",
+    "suggestions": [
+      "Evacuate without delay",
+      "Alert nearby residents",
+      "Support vulnerable people",
+      "Follow safety protocol"
+    ]
+  },
+  {
+    "id": "srt_006",
+    "title": "Two departments give you conflicting instructions for one deadline.",
+    "icon": "siren",
+    "category": "SRT",
+    "suggestions": [
+      "Clarify final owner",
+      "Align objective openly",
+      "Capture decisions in writing",
+      "Execute decisively"
+    ]
+  },
+  {
+    "id": "srt_007",
+    "title": "A major bug is discovered one hour before deployment.",
+    "icon": "bug",
+    "category": "SRT",
+    "suggestions": [
+      "Isolate high-impact issue",
+      "Coordinate focused fix",
+      "Run targeted tests",
+      "Communicate release status"
+    ]
+  },
+  {
+    "id": "srt_008",
+    "title": "A neighbor requires urgent medical help late in the evening.",
+    "icon": "stethoscope",
+    "category": "SRT",
+    "suggestions": [
+      "Call emergency services",
+      "Provide immediate support",
+      "Arrange quick transport",
+      "Inform family members"
+    ]
+  },
+  {
+    "id": "srt_009",
+    "title": "Flooded roads block your regular route to an important briefing.",
+    "icon": "cloud-rain",
+    "category": "SRT",
+    "suggestions": [
+      "Assess route risk first",
+      "Take safer alternative",
+      "Send timing update",
+      "Protect critical materials"
+    ]
+  },
+  {
+    "id": "srt_010",
+    "title": "You suspect confidential project information was shared by mistake.",
+    "icon": "shield-alert",
+    "category": "SRT",
+    "suggestions": [
+      "Report incident early",
+      "Contain access immediately",
+      "Record facts accurately",
+      "Strengthen prevention steps"
+    ]
+  },
+  {
+    "id": "srt_011",
+    "title": "You oversleep on the day of a critical test.",
+    "icon": "alarm-clock",
+    "category": "SRT",
+    "suggestions": [
+      "Recover without panic",
+      "Inform relevant authority",
+      "Reach via fastest safe route",
+      "Fix routine for future"
+    ]
+  },
+  {
+    "id": "srt_012",
+    "title": "You observe unfair treatment of a junior team member.",
+    "icon": "scale",
+    "category": "SRT",
+    "suggestions": [
+      "Intervene respectfully",
+      "Support affected member",
+      "Escalate through proper channel",
+      "Promote fair process"
+    ]
+  }
+]

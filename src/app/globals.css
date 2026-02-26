@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-sora);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(
+      900px 500px at 8% -5%,
+      color-mix(in srgb, #60a5fa 22%, transparent),
+      transparent
+    ),
+    radial-gradient(
+      1000px 540px at 92% 12%,
+      color-mix(in srgb, #22d3ee 16%, transparent),
+      transparent
+    ),
+    linear-gradient(165deg, #020617 0%, #061126 60%, #02040b 100%);
+  color: #e4ecfb;
+  font-family: var(--font-manrope), sans-serif;
+}
+
+.glass-card {
+  border: 1px solid color-mix(in srgb, #a0c8ff 26%, transparent);
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, #0f2a53 62%, transparent),
+    color-mix(in srgb, #050d20 82%, transparent)
+  );
+  backdrop-filter: blur(22px);
+}
+
+.stars {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(205, 226, 255, 0.5) 0.7px,
+    transparent 0.9px
+  );
+  background-size: 36px 36px;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.15)
+  );
+}
+
+@keyframes swipe-pill-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    transform: translateY(0) scale(1);
+    opacity: 0.86;
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.42);
+    transform: translateY(-1px) scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    transform: translateY(0) scale(1);
+    opacity: 0.86;
+  }
+}
+
+@keyframes swipe-arrow-left {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes swipe-arrow-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.swipe-pill {
+  animation: swipe-pill-pulse 1.65s ease-in-out infinite;
+}
+
+.swipe-pill-right {
+  animation-delay: 0.3s;
+}
+
+.swipe-arrow-left {
+  animation: swipe-arrow-left 1.05s ease-in-out infinite;
+}
+
+.swipe-arrow-right {
+  animation: swipe-arrow-right 1.05s ease-in-out infinite;
+}
+
+::selection {
+  background: color-mix(in srgb, #22d3ee 45%, transparent);
+  color: #eff7ff;
+}

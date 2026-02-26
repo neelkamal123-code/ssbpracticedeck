@@ -1,0 +1,146 @@
+[
+  {
+    "id": "tat_001",
+    "title": "A cadet stands alone before sunrise preparing for a selection trial.",
+    "icon": "user",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Disciplined cadet",
+      "challenge": "High performance pressure",
+      "action": "Builds a focused pre-trial routine",
+      "positiveOutcome": "Performs with composure and confidence"
+    }
+  },
+  {
+    "id": "tat_002",
+    "title": "A student prototype fails during a final demonstration.",
+    "icon": "cpu",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Calm team lead",
+      "challenge": "Unexpected technical failure",
+      "action": "Coordinates quick troubleshooting",
+      "positiveOutcome": "Team delivers a working demonstration"
+    }
+  },
+  {
+    "id": "tat_003",
+    "title": "Heavy rain disrupts setup for a village health camp.",
+    "icon": "cloud-rain",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Volunteer organizer",
+      "challenge": "Weather disruption and low readiness",
+      "action": "Shifts camp to an indoor community hall",
+      "positiveOutcome": "Camp runs safely with strong turnout"
+    }
+  },
+  {
+    "id": "tat_004",
+    "title": "A young officer arrives where locals and officials are in conflict.",
+    "icon": "shield",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Balanced young officer",
+      "challenge": "Escalating community disagreement",
+      "action": "Facilitates transparent dialogue",
+      "positiveOutcome": "Mutual agreement and trust restoration"
+    }
+  },
+  {
+    "id": "tat_005",
+    "title": "An athlete gets injured one week before a championship.",
+    "icon": "activity",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Determined athlete",
+      "challenge": "Injury before a key event",
+      "action": "Follows rehab and tactical adaptation",
+      "positiveOutcome": "Supports team performance effectively"
+    }
+  },
+  {
+    "id": "tat_006",
+    "title": "An intern notices data errors in a senior's critical report.",
+    "icon": "lightbulb",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Responsible intern",
+      "challenge": "Correcting seniors respectfully",
+      "action": "Shares evidence with concise clarity",
+      "positiveOutcome": "Report corrected and credibility increased"
+    }
+  },
+  {
+    "id": "tat_007",
+    "title": "Two close teammates stop communicating during mission prep.",
+    "icon": "users",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Neutral mediator teammate",
+      "challenge": "Team coordination breakdown",
+      "action": "Re-centers team on shared mission",
+      "positiveOutcome": "Cohesion returns before execution"
+    }
+  },
+  {
+    "id": "tat_008",
+    "title": "A commuter witnesses panic at a busy railway station.",
+    "icon": "train",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Alert commuter",
+      "challenge": "Crowd panic in a dense environment",
+      "action": "Guides people toward safe exits",
+      "positiveOutcome": "Situation stabilizes with minimal harm"
+    }
+  },
+  {
+    "id": "tat_009",
+    "title": "A village student studies in limited-resource conditions.",
+    "icon": "book-open",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Ambitious student",
+      "challenge": "Resource constraints",
+      "action": "Maintains disciplined self-study plan",
+      "positiveOutcome": "Secures scholarship and inspires peers"
+    }
+  },
+  {
+    "id": "tat_010",
+    "title": "A youth group plans a cleanup drive but receives weak participation.",
+    "icon": "trash-2",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Community volunteer lead",
+      "challenge": "Low public engagement",
+      "action": "Runs awareness and micro-team assignments",
+      "positiveOutcome": "Drive succeeds with growing support"
+    }
+  },
+  {
+    "id": "tat_011",
+    "title": "A rescue drill fails due to communication gaps.",
+    "icon": "target",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Training coordinator",
+      "challenge": "Unclear command signals",
+      "action": "Standardizes communication protocol",
+      "positiveOutcome": "Next drill executed with precision"
+    }
+  },
+  {
+    "id": "tat_012",
+    "title": "A leader must motivate a fatigued team near the final milestone.",
+    "icon": "trophy",
+    "category": "TAT",
+    "anchors": {
+      "protagonist": "Mission leader",
+      "challenge": "Low team energy and morale",
+      "action": "Breaks goals into short achievable wins",
+      "positiveOutcome": "Team finishes with renewed momentum"
+    }
+  }
+]

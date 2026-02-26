@@ -1,0 +1,146 @@
+[
+  {
+    "id": "wat_001",
+    "title": "Courage",
+    "icon": "shield",
+    "category": "WAT",
+    "suggestions": [
+      "Facing fear with preparation",
+      "Standing for what is right",
+      "Initiative under pressure",
+      "Resilience during adversity"
+    ]
+  },
+  {
+    "id": "wat_002",
+    "title": "Leadership",
+    "icon": "compass",
+    "category": "WAT",
+    "suggestions": [
+      "Guiding with clarity",
+      "Taking responsibility early",
+      "Deciding with balance",
+      "Inspiring team confidence"
+    ]
+  },
+  {
+    "id": "wat_003",
+    "title": "Failure",
+    "icon": "rotate-ccw",
+    "category": "WAT",
+    "suggestions": [
+      "Learning from outcomes",
+      "Rebuilding strategy",
+      "Improving process discipline",
+      "Returning stronger"
+    ]
+  },
+  {
+    "id": "wat_004",
+    "title": "Discipline",
+    "icon": "check-circle",
+    "category": "WAT",
+    "suggestions": [
+      "Consistency over mood",
+      "Daily routine control",
+      "Focused execution",
+      "Long-term reliability"
+    ]
+  },
+  {
+    "id": "wat_005",
+    "title": "Teamwork",
+    "icon": "users",
+    "category": "WAT",
+    "suggestions": [
+      "Shared objective alignment",
+      "Trust through accountability",
+      "Respectful collaboration",
+      "Mutual support under stress"
+    ]
+  },
+  {
+    "id": "wat_006",
+    "title": "Risk",
+    "icon": "alert-triangle",
+    "category": "WAT",
+    "suggestions": [
+      "Calculated decision making",
+      "Prepared contingency plans",
+      "Responsibility for outcomes",
+      "Adaptive execution"
+    ]
+  },
+  {
+    "id": "wat_007",
+    "title": "Pressure",
+    "icon": "clock-3",
+    "category": "WAT",
+    "suggestions": [
+      "Calm response pattern",
+      "Priority-based action",
+      "Energy channeling",
+      "Steady communication"
+    ]
+  },
+  {
+    "id": "wat_008",
+    "title": "Responsibility",
+    "icon": "briefcase",
+    "category": "WAT",
+    "suggestions": [
+      "Owning commitments",
+      "Reliable follow-through",
+      "Transparent reporting",
+      "Mature decision behavior"
+    ]
+  },
+  {
+    "id": "wat_009",
+    "title": "Conflict",
+    "icon": "crosshair",
+    "category": "WAT",
+    "suggestions": [
+      "Listening before reacting",
+      "Resolving with fairness",
+      "Protecting relationships",
+      "Keeping mission priority"
+    ]
+  },
+  {
+    "id": "wat_010",
+    "title": "Success",
+    "icon": "trophy",
+    "category": "WAT",
+    "suggestions": [
+      "Prepared effort over luck",
+      "Consistency in action",
+      "Humble confidence",
+      "Growth after achievement"
+    ]
+  },
+  {
+    "id": "wat_011",
+    "title": "Integrity",
+    "icon": "lock",
+    "category": "WAT",
+    "suggestions": [
+      "Honesty in pressure moments",
+      "Ethical choices consistently",
+      "Trustworthy commitments",
+      "Values-led conduct"
+    ]
+  },
+  {
+    "id": "wat_012",
+    "title": "Challenge",
+    "icon": "mountain",
+    "category": "WAT",
+    "suggestions": [
+      "Opportunity to improve",
+      "Structured preparation",
+      "Focused persistence",
+      "Positive adaptation"
+    ]
+  }
+]
