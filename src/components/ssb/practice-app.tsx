@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { ArrowUpRight, Lock, Sparkles } from "lucide-react";
 import type { SectionKey } from "@/domain/ssb/sections";
 import { sectionDefinitions } from "@/domain/ssb/sections";
 import type { SsbItem, SsbSectionPayload } from "@/domain/ssb/types";
@@ -16,6 +16,8 @@ import { renderIcon } from "@/lib/icon-map";
 
 interface PracticeAppProps {
   data: SsbSectionPayload;
+  onOpenPlans?: () => void;
+  hasPremium?: boolean;
 }
 
 const sectionAccent: Record<SectionKey, { rgb: string; text: string }> = {
@@ -80,22 +82,98 @@ function SidePeekCard({ item, side }: { item: SsbItem; side: "left" | "right" })
   );
 }
 
-function renderSsbCard(item: SsbItem, index: number, total: number) {
+function UnlockMorePeekCard({ onOpenPlans }: { onOpenPlans: () => void }) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onOpenPlans}
+      animate={{ y: [0, -5, 0] }}
+      transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute right-0 top-8 hidden h-[84%] w-[68%] translate-x-[58%] overflow-hidden rounded-[30px] border border-amber-200/35 bg-amber-300/8 p-5 text-left backdrop-blur-md lg:block"
+    >
+      <span className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(252,211,77,0.18),transparent_45%)]" />
+      <div className="relative flex h-full flex-col">
+        <p className="text-[0.58rem] uppercase tracking-[0.2em] text-amber-100/80">
+          Last Card Reached
+        </p>
+        <div className="mt-3 flex items-start gap-3">
+          <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl border border-amber-200/35 bg-amber-300/16 text-amber-100">
+            <Lock className="h-4 w-4" />
+          </span>
+          <p className="font-display text-[1.68rem] leading-[1.05] tracking-tight text-amber-50">
+            Unlock more cards
+          </p>
+        </div>
+        <p className="mt-4 text-sm text-amber-100/86">
+          View all plans and continue with premium practice.
+        </p>
+        <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full border border-amber-200/35 bg-amber-300/16 px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.15em] text-amber-50">
+          Show plans
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      </div>
+    </motion.button>
+  );
+}
+
+function renderSsbCard(
+  item: SsbItem,
+  index: number,
+  total: number,
+  onSwipeLeft: () => void,
+  onSwipeRight: () => void,
+) {
   switch (item.category) {
     case "WAT":
-      return <WatCard item={item} index={index} total={total} />;
+      return (
+        <WatCard
+          item={item}
+          index={index}
+          total={total}
+          onSwipeLeft={onSwipeLeft}
+          onSwipeRight={onSwipeRight}
+        />
+      );
     case "SRT":
-      return <SrtCard item={item} index={index} total={total} />;
+      return (
+        <SrtCard
+          item={item}
+          index={index}
+          total={total}
+          onSwipeLeft={onSwipeLeft}
+          onSwipeRight={onSwipeRight}
+        />
+      );
     case "TAT":
-      return <TatCard item={item} index={index} total={total} />;
+      return (
+        <TatCard
+          item={item}
+          index={index}
+          total={total}
+          onSwipeLeft={onSwipeLeft}
+          onSwipeRight={onSwipeRight}
+        />
+      );
     case "LECTURETTE":
-      return <LecturetteCard item={item} index={index} total={total} />;
+      return (
+        <LecturetteCard
+          item={item}
+          index={index}
+          total={total}
+          onSwipeLeft={onSwipeLeft}
+          onSwipeRight={onSwipeRight}
+        />
+      );
     default:
       return null;
   }
 }
 
-export function PracticeApp({ data }: PracticeAppProps) {
+export function PracticeApp({
+  data,
+  onOpenPlans,
+  hasPremium = false,
+}: PracticeAppProps) {
   const [activeSection, setActiveSection] = useState<SectionKey>("wat");
   const [direction, setDirection] = useState<1 | -1>(1);
   const [rotatingWordIndex, setRotatingWordIndex] = useState(0);
@@ -120,6 +198,11 @@ export function PracticeApp({ data }: PracticeAppProps) {
   const activeIndex = indices[activeSection];
   const canSwipeLeft = activeIndex < activeCards.length - 1;
   const canSwipeRight = activeIndex > 0;
+  const showUnlockMorePeek =
+    Boolean(onOpenPlans) &&
+    !hasPremium &&
+    activeCards.length > 0 &&
+    !canSwipeLeft;
   const activeCard = activeCards[activeIndex];
   const accent = sectionAccent[activeSection];
   const totalCards = activeCards.length;
@@ -280,6 +363,8 @@ export function PracticeApp({ data }: PracticeAppProps) {
               ) : null}
               {canSwipeLeft ? (
                 <SidePeekCard item={activeCards[activeIndex + 1]} side="right" />
+              ) : showUnlockMorePeek && onOpenPlans ? (
+                <UnlockMorePeekCard onOpenPlans={onOpenPlans} />
               ) : null}
 
               <div className="pointer-events-none absolute inset-x-[6%] top-6 hidden h-[96%] rounded-[32px] border border-white/8 bg-slate-900/20 lg:block" />
@@ -293,7 +378,13 @@ export function PracticeApp({ data }: PracticeAppProps) {
                 onSwipeLeft={() => navigate(1)}
                 onSwipeRight={() => navigate(-1)}
               >
-                {renderSsbCard(activeCard, activeIndex + 1, activeCards.length)}
+                {renderSsbCard(
+                  activeCard,
+                  activeIndex + 1,
+                  activeCards.length,
+                  () => navigate(1),
+                  () => navigate(-1),
+                )}
               </SwipeCardDeck>
             </div>
           ) : (

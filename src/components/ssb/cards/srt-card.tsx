@@ -12,9 +12,17 @@ interface SrtCardProps {
   item: SRTItem;
   index: number;
   total: number;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }
 
-export function SrtCard({ item, index, total }: SrtCardProps) {
+export function SrtCard({
+  item,
+  index,
+  total,
+  onSwipeLeft,
+  onSwipeRight,
+}: SrtCardProps) {
   const [open, setOpen] = useState(false);
   const [showSamples, setShowSamples] = useState(false);
   const Icon = resolveIcon(item.icon);
@@ -26,6 +34,8 @@ export function SrtCard({ item, index, total }: SrtCardProps) {
       index={index}
       total={total}
       expanded={open}
+      onSwipeLeft={onSwipeLeft}
+      onSwipeRight={onSwipeRight}
       primaryAction={
         <button
           type="button"

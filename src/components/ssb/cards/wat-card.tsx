@@ -12,9 +12,17 @@ interface WatCardProps {
   item: WATItem;
   index: number;
   total: number;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }
 
-export function WatCard({ item, index, total }: WatCardProps) {
+export function WatCard({
+  item,
+  index,
+  total,
+  onSwipeLeft,
+  onSwipeRight,
+}: WatCardProps) {
   const [open, setOpen] = useState(false);
   const [showSamples, setShowSamples] = useState(false);
   const Icon = resolveIcon(item.icon);
@@ -26,6 +34,8 @@ export function WatCard({ item, index, total }: WatCardProps) {
       index={index}
       total={total}
       expanded={open}
+      onSwipeLeft={onSwipeLeft}
+      onSwipeRight={onSwipeRight}
       primaryAction={
         <button
           type="button"

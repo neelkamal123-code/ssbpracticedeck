@@ -19,6 +19,8 @@ interface CardFrameProps {
   extraActions?: ReactNode;
   chips?: CardChip[];
   children: ReactNode;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
 }
 
 export function CardFrame({
@@ -32,6 +34,8 @@ export function CardFrame({
   extraActions,
   chips = [],
   children,
+  onSwipeLeft,
+  onSwipeRight,
 }: CardFrameProps) {
   const canSwipeForward = index < total;
   const canSwipeBackward = index > 1;
@@ -48,10 +52,14 @@ export function CardFrame({
 
       <header className="relative z-10">
         {canSwipeForward ? (
-          <div className="swipe-pill swipe-pill-left inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-200/5 px-3 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-slate-200/90">
+          <button
+            type="button"
+            onClick={onSwipeLeft}
+            className="swipe-pill swipe-pill-left inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-200/5 px-3 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-slate-200/90"
+          >
             Swipe
             <ArrowLeft className="swipe-arrow-left h-3.5 w-3.5" />
-          </div>
+          </button>
         ) : null}
 
         <div
@@ -121,10 +129,14 @@ export function CardFrame({
         )}
 
         {canSwipeBackward ? (
-          <span className="swipe-pill swipe-pill-right ml-auto inline-flex items-center gap-1.5 rounded-full border border-sky-300/30 bg-sky-200/5 px-3 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-slate-200/90">
+          <button
+            type="button"
+            onClick={onSwipeRight}
+            className="swipe-pill swipe-pill-right ml-auto inline-flex items-center gap-1.5 rounded-full border border-sky-300/30 bg-sky-200/5 px-3 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-slate-200/90"
+          >
             Swipe
             <ArrowRight className="swipe-arrow-right h-3.5 w-3.5" />
-          </span>
+          </button>
         ) : null}
       </footer>
     </article>

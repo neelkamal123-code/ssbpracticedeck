@@ -31,7 +31,7 @@ export function UpgradePlansModal({
   onClose,
   onSuccess,
   title = "Unlock More Practice",
-  subtitle = "Pick a plan and complete checkout to unlock premium sets.",
+  subtitle = "Pick a plan and complete checkout to unlock premium sets and 1-minute Lecturette recording.",
 }: UpgradePlansModalProps) {
   const [selectedPlanId, setSelectedPlanId] =
     useState<PracticePlan["id"]>("starter");
@@ -94,6 +94,7 @@ export function UpgradePlansModal({
       setIsProcessingPayment(false);
       setCheckoutStep("success");
       window.localStorage.setItem(PLAN_UNLOCK_STORAGE_KEY, "true");
+      window.dispatchEvent(new Event("ssb:plan-unlocked"));
       onSuccess?.(selectedPlan, billingCycle);
     }, 1100);
   };
@@ -168,6 +169,7 @@ export function UpgradePlansModal({
                     <p>{plan.limits.srt} SRT</p>
                     <p>{plan.limits.tat} TAT</p>
                     <p>{plan.limits.lecturette} Lecturette</p>
+                    <p>1 min recording</p>
                   </div>
                 </button>
               );

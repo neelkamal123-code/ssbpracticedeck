@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   CircleDot,
   Download,
+  Lock,
   Mic,
   Pause,
   Play,
@@ -15,14 +16,18 @@ import {
 import type { LecturetteItem } from "@/domain/ssb/types";
 import { CardFrame } from "@/components/ssb/cards/card-frame";
 import { resolveIcon } from "@/lib/icon-map";
+import { UpgradePlansModal } from "@/components/billing/upgrade-plans-modal";
+import { PLAN_UNLOCK_STORAGE_KEY } from "@/lib/billing/plans";
 
 interface LecturetteCardProps {
   item: LecturetteItem;
   index: number;
   total: number;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }
 
-const MAX_RECORD_SECONDS = 120;
+const MAX_RECORD_SECONDS = 60;
 
 function formatSeconds(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60);
@@ -30,7 +35,20 @@ function formatSeconds(totalSeconds: number) {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
-export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
+export function LecturetteCard({
+  item,
+  index,
+  total,
+  onSwipeLeft,
+  onSwipeRight,
+}: LecturetteCardProps) {
+  const [planUnlocked, setPlanUnlocked] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return window.localStorage.getItem(PLAN_UNLOCK_STORAGE_KEY) === "true";
+  });
+  const [showPlans, setShowPlans] = useState(false);
   const [open, setOpen] = useState(false);
   const [recorderOpen, setRecorderOpen] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
@@ -47,6 +65,7 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
   const autoStopTimeoutRef = useRef<number | null>(null);
 
   const Icon = resolveIcon(item.icon);
+  const requiresPlanUnlockForRecorder = !planUnlocked;
   const elapsedRatio =
     (MAX_RECORD_SECONDS - remainingSeconds) / MAX_RECORD_SECONDS;
 
@@ -97,6 +116,11 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
   };
 
   const startRecording = async () => {
+    if (requiresPlanUnlockForRecorder) {
+      setShowPlans(true);
+      return;
+    }
+
     setRecordingError(null);
     setRecorderOpen(true);
 
@@ -197,6 +221,20 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
   };
 
   useEffect(() => {
+    const syncPlanState = () => {
+      setPlanUnlocked(
+        window.localStorage.getItem(PLAN_UNLOCK_STORAGE_KEY) === "true",
+      );
+    };
+
+    syncPlanState();
+    window.addEventListener("ssb:plan-unlocked", syncPlanState);
+    return () => {
+      window.removeEventListener("ssb:plan-unlocked", syncPlanState);
+    };
+  }, []);
+
+  useEffect(() => {
     return () => {
       clearCountdowns();
       if (mediaRecorderRef.current?.state === "recording") {
@@ -221,6 +259,8 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
       index={index}
       total={total}
       expanded={open || recorderOpen}
+      onSwipeLeft={onSwipeLeft}
+      onSwipeRight={onSwipeRight}
       primaryAction={
         <button
           type="button"
@@ -238,11 +278,25 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
       extraActions={
         <button
           type="button"
-          onClick={() => setRecorderOpen((current) => !current || isRecording)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-rose-300/52 bg-rose-400/18 px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-rose-100 shadow-[0_0_16px_rgba(251,113,133,0.2)] transition-colors hover:bg-rose-400/26"
+          onClick={() => {
+            if (requiresPlanUnlockForRecorder) {
+              setShowPlans(true);
+              return;
+            }
+            setRecorderOpen((current) => !current || isRecording);
+          }}
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+            requiresPlanUnlockForRecorder
+              ? "border-amber-200/45 bg-amber-300/14 text-amber-100 hover:bg-amber-300/22"
+              : "border-rose-300/52 bg-rose-400/18 text-rose-100 shadow-[0_0_16px_rgba(251,113,133,0.2)] hover:bg-rose-400/26"
+          }`}
         >
-          <CircleDot className="h-3.5 w-3.5 text-rose-200" />
-          Record
+          {requiresPlanUnlockForRecorder ? (
+            <Lock className="h-3.5 w-3.5" />
+          ) : (
+            <CircleDot className="h-3.5 w-3.5 text-rose-200" />
+          )}
+          {requiresPlanUnlockForRecorder ? "Record with Plan" : "Record"}
         </button>
       }
       chips={item.externalLink ? [{ label: "Read more", href: item.externalLink }] : []}
@@ -283,7 +337,7 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
                   Lecturette Recorder
                 </p>
                 <p className="mt-1 text-sm text-slate-200/88">
-                  Record for up to 2 minutes.
+                  Record for up to {formatSeconds(MAX_RECORD_SECONDS)}.
                 </p>
               </div>
               <span
@@ -332,7 +386,7 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
                   className="inline-flex items-center gap-1.5 rounded-full border border-rose-200/50 bg-rose-400/18 px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-rose-100 transition-colors hover:bg-rose-400/28"
                 >
                   <Mic className="h-3.5 w-3.5" />
-                  Start 2:00
+                  Start {formatSeconds(MAX_RECORD_SECONDS)}
                 </button>
               )}
 
@@ -392,6 +446,16 @@ export function LecturetteCard({ item, index, total }: LecturetteCardProps) {
           </motion.section>
         ) : null}
       </AnimatePresence>
+
+      <UpgradePlansModal
+        open={showPlans}
+        onClose={() => setShowPlans(false)}
+        onSuccess={() => {
+          setPlanUnlocked(true);
+          setShowPlans(false);
+          setRecorderOpen(true);
+        }}
+      />
     </CardFrame>
   );
 }

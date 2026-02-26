@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Sparkles, UserCircle2 } from "lucide-react";
 import type { SsbSectionPayload } from "@/domain/ssb/types";
@@ -30,6 +30,22 @@ export function AuthenticatedPractice({ data }: AuthenticatedPracticeProps) {
     shouldPromptOnboarding,
     setShouldPromptOnboarding,
   } = useAuth();
+
+  useEffect(() => {
+    const syncPlanState = () => {
+      setHasPremium(
+        window.localStorage.getItem(PLAN_UNLOCK_STORAGE_KEY) === "true",
+      );
+    };
+
+    syncPlanState();
+    window.addEventListener("ssb:plan-unlocked", syncPlanState);
+    window.addEventListener("storage", syncPlanState);
+    return () => {
+      window.removeEventListener("ssb:plan-unlocked", syncPlanState);
+      window.removeEventListener("storage", syncPlanState);
+    };
+  }, []);
 
   if (loading) {
     return (
@@ -73,7 +89,11 @@ export function AuthenticatedPractice({ data }: AuthenticatedPracticeProps) {
         </div>
       </div>
 
-      <PracticeApp data={data} />
+      <PracticeApp
+        data={data}
+        onOpenPlans={() => setShowPlans(true)}
+        hasPremium={hasPremium}
+      />
 
       <ProfileOnboarding
         open={shouldPromptOnboarding && profilePending}

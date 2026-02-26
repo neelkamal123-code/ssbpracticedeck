@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronDown,
@@ -21,6 +21,8 @@ interface TatCardProps {
   item: TATItem;
   index: number;
   total: number;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }
 
 interface TatSampleStory {
@@ -111,7 +113,13 @@ const freeSceneByTatId: Record<string, string> = {
   tat_002: "/images/tat/free/002.webp",
 };
 
-export function TatCard({ item, index, total }: TatCardProps) {
+export function TatCard({
+  item,
+  index,
+  total,
+  onSwipeLeft,
+  onSwipeRight,
+}: TatCardProps) {
   const [unlocked, setUnlocked] = useState(false);
   const [showSamples, setShowSamples] = useState(false);
   const [showPlans, setShowPlans] = useState(false);
@@ -127,11 +135,26 @@ export function TatCard({ item, index, total }: TatCardProps) {
   const [useFallbackScene, setUseFallbackScene] = useState(false);
   const [sceneAspectRatio, setSceneAspectRatio] = useState(16 / 9);
   const Icon = resolveIcon(item.icon);
+  const requiresPlanUnlockForSamples = item.id === "tat_002" && !planUnlocked;
   const requiresPlanUnlock = item.id === "tat_002" && !planUnlocked;
   const sampleStories = sampleStoriesByTatId[item.id] ?? tat001SampleStories;
   const fallbackSceneSrc = `/tat/${item.id.replace("_", "-")}.svg`;
   const primarySceneSrc = freeSceneByTatId[item.id] ?? fallbackSceneSrc;
   const sceneSrc = useFallbackScene ? fallbackSceneSrc : primarySceneSrc;
+
+  useEffect(() => {
+    const syncPlanState = () => {
+      setPlanUnlocked(
+        window.localStorage.getItem(PLAN_UNLOCK_STORAGE_KEY) === "true",
+      );
+    };
+
+    syncPlanState();
+    window.addEventListener("ssb:plan-unlocked", syncPlanState);
+    return () => {
+      window.removeEventListener("ssb:plan-unlocked", syncPlanState);
+    };
+  }, []);
 
   return (
     <CardFrame
@@ -141,6 +164,8 @@ export function TatCard({ item, index, total }: TatCardProps) {
       total={total}
       expanded={unlocked}
       hideTitle
+      onSwipeLeft={onSwipeLeft}
+      onSwipeRight={onSwipeRight}
       primaryAction={
         <button
           type="button"
@@ -176,11 +201,25 @@ export function TatCard({ item, index, total }: TatCardProps) {
       extraActions={
         <button
           type="button"
-          onClick={() => setShowSamples(true)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-white/18 bg-white/[0.04] px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-slate-200/90 transition-colors hover:bg-white/[0.1]"
+          onClick={() => {
+            if (requiresPlanUnlockForSamples) {
+              setShowPlans(true);
+              return;
+            }
+            setShowSamples(true);
+          }}
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+            requiresPlanUnlockForSamples
+              ? "border-amber-200/45 bg-amber-300/14 text-amber-100 hover:bg-amber-300/22"
+              : "border-white/18 bg-white/[0.04] text-slate-200/90 hover:bg-white/[0.1]"
+          }`}
         >
-          <Eye className="h-3.5 w-3.5" />
-          Sample Stories
+          {requiresPlanUnlockForSamples ? (
+            <Lock className="h-3.5 w-3.5" />
+          ) : (
+            <Eye className="h-3.5 w-3.5" />
+          )}
+          {requiresPlanUnlockForSamples ? "Samples with Plan" : "Sample Stories"}
         </button>
       }
     >
